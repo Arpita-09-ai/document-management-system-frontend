@@ -20,10 +20,8 @@ export default function AnnouncementsPage() {
     setAnnouncements] =
     useState([]);
 
-  const role =
-    localStorage.getItem(
-      'role'
-    );
+  const [role, setRole] =
+  useState('');
 
   const fetchAnnouncements =
     async () => {
@@ -50,6 +48,11 @@ export default function AnnouncementsPage() {
     };
 
   useEffect(() => {
+     setRole(
+    localStorage.getItem(
+      'role'
+    ) || ''
+  );
     fetchAnnouncements();
   }, []);
 

@@ -1,12 +1,13 @@
 'use client';
-export const dynamic = 'force-dynamic';
+
+import { Suspense } from 'react';
 import { Search } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import baseApi from '../../services/baseApi';
 
-export default function DocumentsPage() {
+function DocumentsContent() {
     
   const searchParams =
     useSearchParams();
@@ -164,5 +165,12 @@ setSearch] =
       </div>
 
     </div>
+  );
+}
+export default function DocumentsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <DocumentsContent />
+    </Suspense>
   );
 }
